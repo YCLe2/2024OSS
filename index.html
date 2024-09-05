@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html>
 <head>
-    <meta charset = "UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale=1.0>
-    <title>Welcome to 이영찬's Homepage(22000541)</title>
 </head>
 <body>
-    <h1>Welcom to 이영찬's Homepage(22000541)</h1>
-    use the menu to select different Stylesheets
-    <div id="menu">
-        <li class="menuitem" onclick="reStyle(0)">Stylesheet 1
-        <li class="menuitem" onclick="reStyle(1)">Stylesheet 2
-        <li class="menuitem" onclick="reStyle(2)">Stylesheet 3
-        <li class="menuitem" onclick="reStyle(3)">Stylesheet 4
-        <li class="menuitem" onclick="reStyle(4)">No Stylesheet
+<div class="container wrapper">
+  <div id="top">
+    <h1>Welcome to 이영찬's Homepage(22000541)</h1>
+    <p>Use the menu to select different Stylesheets</p>
+  </div>
+  <div class="wrapper">
+   <div id="menubar">
+     <ul id="menulist">
+       <li class="menuitem" onclick="reStyle(0)">Stylesheet 1
+       <li class="menuitem" onclick="reStyle(1)">Stylesheet 2
+       <li class="menuitem">Stylesheet 3
+       <li class="menuitem">Stylesheet 4
+       <li class="menuitem" onclick="noStyles()">No Stylesheet
+     </ul>
     </div>
-    <h1>Same Page Different Stylesheets</h1>
-    This is a demonstration of how different stylesheets can change the layout of your HTML page. You can change the layout of this page by selecting different stylesheets in the menu, or by selecting one of the following links:
-    <br>
-    <a href="style1.html">Stylesheet 1,</a>
-    <a href="style2.html">Stylesheet 2,</a>
-    <a href="javascript:reStyle(2)">Stylesheet 3,</a>
-    <a href="javascript:reStyle(3)">Stylesheet 4.</a>
-    <h2>No Styles</h2>
-    This page uses DIV elements to group different sections of the HTML page. Click here to see how the page looks like with no stylesheet:
-    <br>
-    <a href="javascript:reStyle(4)">No Stylesheet.</a>
-    <h3>Side-Bar</h3>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-    <br>
-    <br>
+    <div id="main">
+      <h1>Same Page Different Stylesheets</h1>
+      <p>This is a demonstration of how different stylesheets can change the layout of your HTML page. You can change the layout of this page by selecting different stylesheets in the menu, or by selecting one of the following links:<br>
+      <a href="style1.html">Stylesheet1</a>,
+      <a href="style2.html">Stylesheet2</a>,
+      <a href="#">Stylesheet3</a>,
+      <a href="#">Stylesheet4</a>.
+      </p>
+       <h2>No Styles</h2>
+      <p>This page uses DIV elements to group different sections of the HTML page. Click here to see how the page looks like with no stylesheet:<br>
+        <a href="index.html">No Stylesheet</a>.</p>
+   </div>
+    <div id="sidebar">
+      <h3>Side-Bar</h3>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+    </div>
+  </div>  
+  
+  
+  <div id="bottom"> 
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+  </div>
+</div>
 </body>
 </html>
+
