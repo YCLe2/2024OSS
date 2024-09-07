@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example</title>
+    <style>
+        .inline-image {
+            width: 50px;
+            vertical-align: middle;
+        }
+        .custom-button {
+            font-size: 1.25rem; /* 버튼 크기 키우기 */
+            padding: 10px 20px; /* 버튼 패딩 조정 */
+            background-color: blue; /* 버튼 배경색 파란색으로 변경 */
+            color: white; /* 버튼 텍스트 색상 흰색으로 변경 */
+            border: none; /* 버튼 테두리 제거 */
+            border-radius: 5px; /* 버튼 모서리 둥글게 */
+            cursor: pointer; /* 커서 포인터로 변경 */
+        }
+        .custom-button:hover {
+            background-color: darkblue; /* 호버 시 배경색 진한 파란색으로 변경 */
+        }
+        .two {
+            width: 250px;
+            margin-left: 0;
+        }
+        .left {
+            margin-top: 50px;
+            margin-left: 200px;
+        }
+        .one {
+            width: 1000px;
+            margin-left: 0;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .flex-container h1 {
+            margin-right: 10px; /* 두 요소 사이의 간격 조정 */
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <img src="bootstrap-logo.svg" class="inline-image">
+        <h2 style="display: inline">Starter template</h2>
+        <hr class="one">
+        <br>
+        
+        <h1>Get started with Bootstrap</h1>
+        <h4>Quickly and easily get started with Bootstrap's compiled, production-<br>ready files with this barebones example featuring some basic HTML and<br> helpful links. Download all our examples to get started.</h4>
+        <button class="custom-button">Download examples</button>
+        <hr class="two">
+        <br>
+        <div class="flex-container">
+            <div>
+                <h1>Starter projects</h1>
+                <ul class="list-unstyled ps-0">
+                    <li>
+                        <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/icons-font" rel="noopener" target="_blank">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap npm starter
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/parcel" rel="noopener" target="_blank">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Parcel starter
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/vite" rel="noopener" target="_blank">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Vite starter
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/webpack" rel="noopener" target="_blank">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Webpack starter
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h1>Guides</h1>
+                <ul class="list-unstyled ps-0">
+                    <li>
+                        <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap quick start guide
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Webpack guide
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Parcel guide
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Bootstrap Vite guide
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+                            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+                            Contributing to Bootstrap
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="one">
+        <br>
+        Created by the Bootstrap team · © 2024
+    </div>
+</body>
+</html>
