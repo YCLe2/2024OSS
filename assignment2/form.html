@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>동적</title>
+    </head>
+    <body>
+        <div>동적 페이지 생성입니다.</div>
+        <input type="text" id="input_append" />
+        <button onclick="listener_append()">등록</button>
+        <button onclick="delete_all()">삭제 </button>
+        <div id="div_append"></div>
+
+        <script>
+            function listener_append(){
+                let input_append = document.getElementById("input_append").value;
+                let div_append = document.getElementById("div_append");
+                if(input_append === "" || input_append == "undefined"){
+                    return false;
+                }
+                div_append.innerHTML += "<div>"+input_append+"</div>";
+                document.getElementById("input_append").value = "";
+            }
+
+            function delete_all(){
+                let div_append = document.getElementById("div_append");
+                div_append.innerHTML = "";
+                document.getElementById("input_append").value = "";
+            }
+        </script>
+    </body>
+</html>
