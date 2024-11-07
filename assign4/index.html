@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생 데이터 관리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .student-info {
+            display: inline-block;
+            width: 60%;
+            margin: 10px 0;
+        }
+
+        .edit-btn, .delete-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+        }
+
+        .edit-btn:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .modal button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>학생 데이터 관리</h1>
+    <div class="container">
+        <button id="btnGetData" class="button">학생 데이터 가져오기</button>
+        <button id="btnCreateData" class="button">학생 데이터 추가</button>
+        <div id="div_students"></div>
+    </div>
+
+    <div id="addStudentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addStudentModal')">&times;</span>
+            <h3>학생 데이터 추가</h3>
+            <div class="input-group">
+                <label for="new_student_name">이름:</label>
+                <input type="text" id="new_student_name" />
+            </div>
+            <div class="input-group">
+                <label for="new_student_age">나이:</label>
+                <input type="number" id="new_student_age" />
+            </div>
+            <div class="input-group">
+                <label for="new_student_grade">등급:</label>
+                <input type="text" id="new_student_grade" />
+            </div>
+            <div class="input-group">
+                <label for="new_student_city">도시:</label>
+                <input type="text" id="new_student_city" />
+            </div>
+            <button id="btnAddStudent">추가</button>
+        </div>
+    </div>
+
+    <div id="editStudentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editStudentModal')">&times;</span>
+            <h3>학생 데이터 수정</h3>
+            <div class="input-group">
+                <label for="edit_student_id">ID:</label>
+                <input type="text" id="edit_student_id" disabled />
+            </div>
+            <div class="input-group">
+                <label for="edit_student_name_modal">이름:</label>
+                <input type="text" id="edit_student_name_modal" />
+            </div>
+            <div class="input-group">
+                <label for="edit_student_age_modal">나이:</label>
+                <input type="number" id="edit_student_age_modal" />
+            </div>
+            <div class="input-group">
+                <label for="edit_student_grade_modal">등급:</label>
+                <input type="text" id="edit_student_grade_modal" />
+            </div>
+            <div class="input-group">
+                <label for="edit_student_city_modal">도시:</label>
+                <input type="text" id="edit_student_city_modal" />
+            </div>
+            <button id="btnUpdateStudent">수정</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btnGetData").click(getDataFromJSONFile);
+            $("#btnCreateData").click(() => openModal('addStudentModal'));
+            $("#btnAddStudent").click(() => {
+                createOrUpdateData('POST', 'students', {
+                    name: $("#new_student_name").val(),
+                    age: $("#new_student_age").val(),
+                    grade: $("#new_student_grade").val(),
+                    city: $("#new_student_city").val()
+                });
+                closeModal('addStudentModal');
+            });
+            $("#btnUpdateStudent").click(() => {
+                const id = $("#edit_student_id").val();
+                createOrUpdateData('PUT', `students/${id}`, {
+                    name: $("#edit_student_name_modal").val(),
+                    age: $("#edit_student_age_modal").val(),
+                    grade: $("#edit_student_grade_modal").val(),
+                    city: $("#edit_student_city_modal").val()
+                });
+                closeModal('editStudentModal');
+            });
+        });
+
+        function getDataFromJSONFile() {
+            $.ajax({
+                url: "https://672c2c2a1600dda5a9f778f1.mockapi.io/students",
+                method: "GET",
+                contentType: "application/json",
+                success: function(response) {
+                    $("#div_students").html("");
+                    response.forEach(item => {
+                        $("#div_students").append(`
+                            <div>
+                                <span class="student-info">
+                                    ${item.id} - ${item.name} (${item.age}세, ${item.grade}등급, ${item.city})
+                                </span>
+                                <button class="edit-btn" onclick="editStudent(${item.id}, '${item.name}', ${item.age}, '${item.grade}', '${item.city}')">수정</button>
+                                <button class="delete-btn" onclick="deleteData(${item.id})">삭제</button>
+                            </div>
+                        `);
+                    });
+                },
+                error: function() {
+                    alert("데이터를 가져오는 데 실패했습니다.");
+                }
+            });
+        }
+
+        function createOrUpdateData(method, endpoint, data) {
+            $.ajax({
+                url: `https://672c2c2a1600dda5a9f778f1.mockapi.io/${endpoint}`,
+                method: method,
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function() {
+                    alert("데이터 처리 성공!");
+                    getDataFromJSONFile(); // 데이터 갱신
+                },
+                error: function() {
+                    alert("데이터 처리에 실패했습니다.");
+                }
+            });
+        }
+
+        function deleteData(id) {
+            $.ajax({
+                url: `https://672c2c2a1600dda5a9f778f1.mockapi.io/students/${id}`,
+                method: "DELETE",
+                contentType: "application/json",
+                success: function() {
+                    alert(id + "번 데이터 삭제 성공!");
+                    getDataFromJSONFile(); // 삭제 후 목록 갱신
+                },
+                error: function() {
+                    alert("데이터 삭제에 실패했습니다.");
+                }
+            });
+        }
+
+        function editStudent(id, name, age, grade, city) {
+            $("#edit_student_id").val(id);
+            $("#edit_student_name_modal").val(name);
+            $("#edit_student_age_modal").val(age);
+            $("#edit_student_grade_modal").val(grade);
+            $("#edit_student_city_modal").val(city);
+            openModal('editStudentModal');
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+    </script>
+</body>
+</html>
